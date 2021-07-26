@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        app = ''
+    }
     stages {
         stage('Prepare') {
             agent any
@@ -50,7 +52,6 @@ pipeline {
         stage('push image'){
             steps{
                 docker.withRegistry('679117170907.dkr.ecr.ap-northeast-2.amazonaws.com', 'ecr:ap-northeast-2:ecr-credentials') {
-                     app.push("${env.BUILD_NUMBER}")
                      app.push("latest")
                 }
             }
