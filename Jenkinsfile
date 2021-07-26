@@ -1,27 +1,59 @@
-// #이미지 빌드시 이름을 ECR 쪽으로 변경
-app = docker.build("679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox")
+pipeline {
+    agent any
 
-// # ECR에서 생성한 Repository URI로 변경 및 Jenkins AWS Credential으로 변경
-docker.withRegistry('679117170907.dkr.ecr.ap-northeast-2.amazonaws.com', 'ecr:ap-northeast-2:ecr-credentials')
+    stages {
+        stage('Prepare') {
+            agent any
 
-// # Full Code
+            steps {
+                checkout scm
+            }
 
-node {
-     stage('Clone repository') {
-         checkout scm
-     }
+            post {
 
-     stage('Build image') {
-         app = docker.build("679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox")
-     }
+                success {
+                    echo 'prepare success'
+                }
 
-     stage('Push image') {
-         sh 'rm  ~/.dockercfg || true'
-         sh 'rm ~/.docker/config.json || true'
+                always {
+                    echo 'done prepare'
+                }
 
-         docker.withRegistry('679117170907.dkr.ecr.ap-northeast-2.amazonaws.com', 'ecr:ap-northeast-2:ecr-credentials') {
-             app.push("${env.BUILD_NUMBER}")
-             app.push("latest")
-     }
-  }
+                cleanup {
+                    echo 'after all other post conditions'
+                }
+            }
+        }
+
+        stage('build gradle') {
+            steps {
+                sh  './gradlew build'
+
+
+                sh 'ls -al ./build'
+            }
+            post {
+                success {
+                    echo 'gradle build success'
+                }
+
+                failure {
+                    echo 'gradle build failed'
+                }
+            }
+        }
+        stage('docker build'){
+            steps{
+                app = docker.build("679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox")
+            }
+        }
+        stage('push image'){
+            steps{
+                docker.withRegistry('679117170907.dkr.ecr.ap-northeast-2.amazonaws.com', 'ecr:ap-northeast-2:ecr-credentials') {
+                     app.push("${env.BUILD_NUMBER}")
+                     app.push("latest")
+                }
+            }
+        }
+    }
 }
