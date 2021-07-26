@@ -46,15 +46,9 @@ pipeline {
         }
         stage('docker build'){
             steps{
-                app = docker.build("679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox")
+                sh 'docker build .'
             }
         }
-        stage('push image'){
-            steps{
-                docker.withRegistry('679117170907.dkr.ecr.ap-northeast-2.amazonaws.com', 'ecr:ap-northeast-2:ecr-credentials') {
-                     app.push("latest")
-                }
-            }
-        }
+
     }
 }
