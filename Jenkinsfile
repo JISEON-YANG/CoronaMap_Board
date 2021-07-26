@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        app = ''
-    }
     stages {
         stage('Prepare') {
             agent any
@@ -33,15 +30,6 @@ pipeline {
 
 
                 sh 'ls -al ./build'
-            }
-            post {
-                success {
-                    echo 'gradle build success'
-                }
-
-                failure {
-                    echo 'gradle build failed'
-                }
             }
         }
         stage('aws login'){
