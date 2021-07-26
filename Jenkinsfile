@@ -1,3 +1,4 @@
+app = docker.build("679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox")
 pipeline {
     environment {
         registry = "679117170907.dkr.ecr.ap-northeast-2.amazonaws.com"
