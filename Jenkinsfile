@@ -1,48 +1,52 @@
-
 pipeline {
-
-    environment {
-        registry = "679117170907.dkr.ecr.ap-northeast-2.amazonaws.com"
-        registryCredential = 'ecr:ap-northeast-2:ecr-credentials'
-    }
     agent any
+
     stages {
-        stage('Environment') {
-            parallel {
-                stage('chmod') {
-                    steps {
-                        sh 'chmod 755 ./gradlew'
-                    }
+        stage('Prepare') {
+            agent any
+
+            steps {
+                checkout scm
+            }
+
+            post {
+
+                success {
+                    echo 'prepare success'
                 }
-                stage('display') {
-                    steps {
-                        sh 'ls -la'
-                    }
+
+                always {
+                    echo 'done prepare'
+                }
+
+                cleanup {
+                    echo 'after all other post conditions'
                 }
             }
         }
-        stage('Build Jar') {
+
+        stage('build gradle') {
             steps {
-                sh './gradlew build'
+                sh  './gradlew build'
+
+
+                sh 'ls -al ./build'
+            }
+            post {
+                success {
+                    echo 'gradle build success'
+                }
+
+                failure {
+                    echo 'gradle build failed'
+                }
             }
         }
-        stage('Build docker image') {
-            steps {
-                sh 'docker build -t $registry:latest .'
+
+        stage('dockerizing'){
+            steps{
+                sh 'docker build . -t ci/test'
             }
         }
-        stage('Deploy docker image') {
-            steps {
-                 docker.withRegistry('679117170907.dkr.ecr.ap-northeast-2.amazonaws.com', 'ecr:ap-northeast-2:ecr-credentials') {
-                     app.push("${env.BUILD_NUMBER}")
-                     app.push("latest")
-            }
-        }
-//         stage('Clean docker image') {
-//             steps{
-//                 sh "docker rmi $registry"
-//             }
-//         }
-     }
-}
+    }
 }
