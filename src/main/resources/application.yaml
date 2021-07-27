@@ -1,20 +1,17 @@
 spring:
-#  h2:
-#    console:
-#      enabled: true
-  datasource:
-    url: jdbc:mariadb://freelec-springboot2-webservice.chmxfyrjaxkt.ap-northeast-2.rds.amazonaws.com:3306/freelec_springboot2_webservice
-    username: admin
-    password: afs227@@
-    driver-class-name: org.mariadb.jdbc.Driver
+  h2:
+    console:
+      enabled: true
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         #        show_sql: true
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  profiles:
+    include: oauth
   session:
     store-type: jdbc
 logging.level:
