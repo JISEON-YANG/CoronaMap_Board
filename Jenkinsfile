@@ -9,25 +9,25 @@ pipeline {
 
         stage('Build docker image') {
             steps {
-                sh 'docker build -t mbox:latest .'
+                sh 'docker build -t mybox .'
             }
         }
 
         stage('login'){
             steps{
-                sh 'aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 256746287291.dkr.ecr.ap-northeast-2.amazonaws.com'
+                sh 'aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com'
             }
         }
 
         stage('tag'){
             steps{
-                sh 'docker tag mbox:latest 256746287291.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins:latest'
+                sh 'docker tag mybox:latest 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:latest'
             }
         }
 
         stage('push'){
             steps{
-                sh 'docker push 256746287291.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins:latest'
+                sh 'docker push 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:latest'
             }
         }
     }
