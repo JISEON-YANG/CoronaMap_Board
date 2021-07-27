@@ -4,9 +4,9 @@ metadata:
   name: mybox
 spec:
   ports:
-    - port: 80
+    - port: 8080
       protocol: TCP
-      targetPort: 8080
+      targetPort: 80
   type: LoadBalancer
   selector:
     run: mybox
