@@ -1,57 +1,34 @@
 pipeline {
     agent any
     stages {
-        stage('Prepare') {
-            agent any
-
+        stage('Build gradle') {
             steps {
-                checkout scm
-            }
-
-            post {
-
-                success {
-                    echo 'prepare success'
-                }
-
-                always {
-                    echo 'done prepare'
-                }
-
-                cleanup {
-                    echo 'after all other post conditions'
-                }
+                sh './gradlew build'
             }
         }
 
-        stage('build gradle') {
+        stage('Build docker image') {
             steps {
-                sh  './gradlew build'
-
-
-                sh 'ls -al ./build'
-            }
-        }
-        stage('aws login'){
-            steps{
-                sh 'aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com'
-            }
-        }
-        stage('docker build'){
-            steps{
-                sh 'docker build -t mybox .'
-            }
-        }
-        stage('Make tag'){
-            steps{
-                sh 'docker tag mybox:latest 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:latest'
-            }
-        }
-        stage('Push'){
-            steps{
-                sh 'docker push 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:latest'
+                sh 'docker build -t mbox:latest .'
             }
         }
 
+        stage('login'){
+            steps{
+                sh 'aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 256746287291.dkr.ecr.ap-northeast-2.amazonaws.com'
+            }
+        }
+
+        stage('tag'){
+            steps{
+                sh 'docker tag mbox:latest 256746287291.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins:latest'
+            }
+        }
+
+        stage('push'){
+            steps{
+                sh 'docker push 256746287291.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins:latest'
+            }
+        }
     }
 }
