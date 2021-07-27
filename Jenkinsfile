@@ -21,13 +21,13 @@ pipeline {
 
         stage('tag'){
             steps{
-                sh 'docker tag mybox:latest 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:latest'
+                sh 'docker tag mybox:latest 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:0.1'
             }
         }
 
         stage('push'){
             steps{
-                sh 'docker push 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:latest'
+                sh 'docker push 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:0.1'
             }
         }
     }
