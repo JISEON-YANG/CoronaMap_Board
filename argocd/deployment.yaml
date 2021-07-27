@@ -16,4 +16,4 @@ spec:
         - image: 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:0.1
           name: mybox
           ports:
-            - containerPort: 80
+            - containerPort: 8080
