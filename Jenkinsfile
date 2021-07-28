@@ -6,7 +6,11 @@ pipeline {
                 sh './gradlew build'
             }
         }
-
+        stage('test Who'){
+            steps {
+                sh 'who'
+            }
+        }
         stage('Build docker image') {
             steps {
                 sh 'docker build -t mybox .'
