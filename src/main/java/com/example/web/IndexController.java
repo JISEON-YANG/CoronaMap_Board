@@ -17,7 +17,7 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
 
-    @GetMapping("/")
+    @GetMapping("/mybox")
     public String index(Model model){
         model.addAttribute("posts",postsService.findAllDesc());
 
