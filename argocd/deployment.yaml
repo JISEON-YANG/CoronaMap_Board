@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mybox
+  name: board
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: mybox
+      run: board
   template:
     metadata:
       labels:
-        run: mybox
+        run: board
     spec:
       containers:
-        - image: 679117170907.dkr.ecr.ap-northeast-2.amazonaws.com/mybox:0.1
-          name: mybox
+        - image: 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.1
+          name: board
           ports:
             - containerPort: 8080
+      nodeSelector:
+        key: private1
