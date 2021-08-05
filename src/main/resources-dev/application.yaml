@@ -1,0 +1,9 @@
+profile: dev
+
+spring:
+
+  datasource:
+    url: jdbc:mariadb://appleluck-db-dev.cooikna6ekad.ap-northeast-2.rds.amazonaws.com:3306/appleluck
+    username: admin
+    password: Soldesk!
+    driver-class-name: org.mariadb.jdbc.Driver
