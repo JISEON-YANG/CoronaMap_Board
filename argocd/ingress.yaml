@@ -24,3 +24,13 @@ spec:
                 name: board
                 port:
                   number: 80
+    - host:
+      http:
+        paths:
+          - path: /map
+            pathType: Prefix
+            backend:
+              service:
+                name: map
+                port:
+                  number: 80
