@@ -1,6 +1,20 @@
 pipeline {
     agent any
+
     stages {
+            stage('Test gradle') {
+                steps {
+                    sh './gradlew build'
+                }
+            }
+
+            stage('Test gradle') {
+                steps {
+                    sh 'SPRING_PROFILES_ACTIVE=core gradle clean bootRun -Pprofile=prod'
+                }
+            }
+    }
+/*     stages {
         stage('Build gradle') {
             steps {
                 sh './gradlew build'
@@ -34,5 +48,5 @@ pipeline {
                 sh 'docker push 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.2'
             }
         }
-    }
+    } */
 }
