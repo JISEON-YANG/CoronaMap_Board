@@ -8,7 +8,7 @@ pipeline {
                 }
             }
 
-            stage('Test gradle') {
+            stage('prod test') {
                 steps {
                     sh 'SPRING_PROFILES_ACTIVE=core gradle clean bootRun -Pprofile=prod'
                 }
