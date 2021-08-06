@@ -1,19 +1,18 @@
 pipeline {
     agent any
-
-    stages {
-            stage('Test gradle') {
-                steps {
-                    sh './gradlew build'
-                }
-            }
-
+//     stages {
+//             stage('Test gradle') {
+//                 steps {
+//                     sh './gradlew build'
+//                 }
+//             }
+//
 //             stage('prod test') {
 //                 steps {
 //                     sh 'SPRING_PROFILES_ACTIVE=core gradle clean bootRun --Pprofile=prod'
 //                 }
 //             }
-    }
+//     }
      stages {
         stage('Build gradle') {
             steps {
