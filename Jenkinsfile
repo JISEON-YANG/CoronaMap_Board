@@ -8,13 +8,13 @@ pipeline {
                 }
             }
 
-            stage('prod test') {
-                steps {
-                    sh 'SPRING_PROFILES_ACTIVE=core gradle clean bootRun --Pprofile=prod'
-                }
-            }
+//             stage('prod test') {
+//                 steps {
+//                     sh 'SPRING_PROFILES_ACTIVE=core gradle clean bootRun --Pprofile=prod'
+//                 }
+//             }
     }
-/*     stages {
+     stages {
         stage('Build gradle') {
             steps {
                 sh './gradlew build'
@@ -39,14 +39,14 @@ pipeline {
 
         stage('tag'){
             steps{
-                sh 'docker tag board:latest 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.2'
+                sh 'docker tag board:latest 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.3'
             }
         }
 
         stage('push'){
             steps{
-                sh 'docker push 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.2'
+                sh 'docker push 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.3'
             }
         }
-    } */
+    }
 }
