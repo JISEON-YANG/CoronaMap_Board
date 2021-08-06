@@ -10,13 +10,13 @@ pipeline {
 
             stage('gradle clean') {
                 steps {
-                    sh 'gradle clean'
+                    sh './gradlew clean build'
                 }
             }
 
             stage('prod test') {
                 steps {
-                    sh './gradlew build --Pprofile=prod'
+                    sh 'gradle -spring.profiles.active=prod bootRun'
                 }
             }
     }
