@@ -8,9 +8,15 @@ pipeline {
                 }
             }
 
+            stage('gradle clean') {
+                steps {
+                    sh 'gradle clean'
+                }
+            }
+
             stage('prod test') {
                 steps {
-                    sh 'gradle clean ./gradlew build --Pprofile=prod'
+                    sh './gradlew build --Pprofile=prod'
                 }
             }
     }
