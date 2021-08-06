@@ -54,5 +54,4 @@ public class PostsService {
         postsRepository.delete(posts);
     }
 
-
 }
