@@ -16,7 +16,7 @@ pipeline {
 
             stage('prod test') {
                 steps {
-                    sh './gradlew bootRun prod'
+                    sh './gradlew bootRun -Dspring.profiles.active=prod'
                 }
             }
     }
