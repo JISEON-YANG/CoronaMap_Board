@@ -10,7 +10,7 @@ pipeline {
 
             stage('prod test') {
                 steps {
-                    sh 'gradle clean ./gradlew build --Pprofile=prod'
+                    sh 'SPRING_PROFILES_ACTIVE=core gradle clean bootRun --Pprofile=prod'
                 }
             }
     }

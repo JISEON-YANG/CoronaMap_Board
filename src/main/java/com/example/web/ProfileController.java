@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProfileController {
 
-    @Value("${profile}")
+//    @Value("${profile}")
     private String profile;
 
     @GetMapping("/profile")
