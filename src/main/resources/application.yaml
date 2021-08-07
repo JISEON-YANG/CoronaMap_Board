@@ -1,13 +1,13 @@
 spring:
 
-  datasource:
-    url: jdbc:mariadb://acme.appleluck.com:3306/appleluck
-    username: admin
-    password: Soldesk!
-    driver-class-name: org.mariadb.jdbc.Driver
-#  h2:
-#    console:
-#      enabled: true
+#  datasource:
+#    url: jdbc:mariadb://acme.appleluck.com:3306/appleluck
+#    username: admin
+#    password: Soldesk!
+#    driver-class-name: org.mariadb.jdbc.Driver
+  h2:
+    console:
+      enabled: true
   jpa:
     hibernate:
       ddl-auto: create
@@ -15,7 +15,7 @@ spring:
       hibernate:
         #        show_sql: true
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   profiles:
     include: oauth
   session:

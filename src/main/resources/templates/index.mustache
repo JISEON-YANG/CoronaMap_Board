@@ -1,32 +1,25 @@
 {{>layout/header}}
-<div class="navi" style="margin: 50px 0 0 35px;">
-    <a href="/map">코로나 지도</a>
-    <a href="">게시판</a>
-</div>
+
+<!--<div class="navi" style="margin: 50px 0 0 35px;">-->
+<!--    <a href="/map">코로나 지도</a>-->
+<!--    <a href="">게시판</a>-->
+<!--</div>-->
 <h1>코로나 자유게시판</h1>
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-            {{#userName}}
-                Logged in as: <span id="user">{{userName}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/userName}}
         </div>
     </div>
     <br>
     <!-- 목록 출력 영역 -->
     <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
+        <thead class="thead-light">
         <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
+            <th scope="col" style="text-align: center">번호</th>
+            <th scope="col" style="text-align: center">제목</th>
+            <th scope="col" style="text-align: center">작성자</th>
+            <th scope="col" style="text-align: center">최종수정일</th>
         </tr>
         </thead>
         <tbody id="tbody">

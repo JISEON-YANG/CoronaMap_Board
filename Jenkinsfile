@@ -2,23 +2,28 @@ pipeline {
     agent any
 
     stages {
-            stage('Test gradle') {
+            stage('Clean') {
                 steps {
-                    sh './gradlew build'
+                    sh './gradlew clean'
+                }
+            }
+            stage('Build'){
+                steps{
+                    sh './gradlew build -Dspring.profiles.active=prod'
                 }
             }
 
-            stage('gradle clean') {
-                steps {
-                    sh './gradlew clean build'
-                }
-            }
+//             stage('gradle clean') {
+//                 steps {
+//                     sh './gradlew clean build'
+//                 }
+//             }
 
-            stage('prod test') {
-                steps {
-                    sh './gradlew bootRun -Dspring.profiles.active=prod'
-                }
-            }
+//             stage('prod test') {
+//                 steps {
+//                     sh './gradlew bootRun '
+//                 }
+//             }
     }
 /*     stages {
         stage('Build gradle') {
