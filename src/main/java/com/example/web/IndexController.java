@@ -4,7 +4,10 @@ import com.example.config.auth.LoginUser;
 import com.example.config.auth.dto.SessionUser;
 import com.example.dto.PostsResponseDto;
 import com.example.service.PostsService;
+import com.example.service.RedisSampleService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +17,21 @@ import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class IndexController {
 
     private final PostsService postsService;
     private final HttpSession httpSession;
+    @Autowired
+    private RedisSampleService redisSampleService;
 
     @GetMapping({"/board", "/"})
     public String index(Model model, @LoginUser SessionUser user){
-        model.addAttribute("posts",postsService.findAllDesc());
+//        model.addAttribute("posts",postsService.findAllDesc());
+        redisSampleService.getRedisStringValue("banana");
 
         if(user != null){
+            log.info("{}", user.toString());
             model.addAttribute("userName", user.getName());
         }
         return "index";
