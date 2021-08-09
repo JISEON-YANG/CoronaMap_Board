@@ -27,11 +27,11 @@ public class IndexController {
 
     @GetMapping({"/board", "/"})
     public String index(Model model, @LoginUser SessionUser user){
-//        model.addAttribute("posts",postsService.findAllDesc());
-        redisSampleService.getRedisStringValue("banana");
+        model.addAttribute("posts",postsService.findAllDesc());
+//        redisSampleService.getRedisStringValue("banana");
 
         if(user != null){
-            log.info("{}", user.toString());
+//            log.info("{}", user.toString());
             model.addAttribute("userName", user.getName());
         }
         return "index";

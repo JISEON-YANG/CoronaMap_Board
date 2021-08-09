@@ -13,7 +13,7 @@ spec:
         run: board
     spec:
       containers:
-        - image: 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.92
+        - image: 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.93
           name: board
           ports:
             - containerPort: 8080
