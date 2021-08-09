@@ -7,11 +7,11 @@ pipeline {
                     sh './gradlew clean'
                 }
             }
-            stage('Build'){
-                steps{
-                    sh './gradlew build -Dspring.profiles.active=prod'
-                }
-            }
+//             stage('Build'){
+//                 steps{
+//                     sh './gradlew build -Dspring.profiles.active=prod'
+//                 }
+//             }
 
 //             stage('gradle clean') {
 //                 steps {
@@ -25,7 +25,7 @@ pipeline {
 //                 }
 //             }
     }
-/*     stages {
+     stages {
         stage('Build gradle') {
             steps {
                 sh './gradlew build'
@@ -59,5 +59,5 @@ pipeline {
                 sh 'docker push 783845918471.dkr.ecr.ap-northeast-2.amazonaws.com/board:0.2'
             }
         }
-    } */
+    }
 }
