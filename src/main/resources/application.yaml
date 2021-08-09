@@ -1,6 +1,6 @@
 spring:
   redis:
-    host: session-redis.pxr9ze.ng.0001.apn2.cache.amazonaws.com
+    host: session-redis-001.pxr9ze.0001.apn2.cache.amazonaws.com
     port: 6379
   session:
     store-type: redis
