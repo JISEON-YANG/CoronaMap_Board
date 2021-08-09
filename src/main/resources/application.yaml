@@ -2,6 +2,9 @@ spring:
   redis:
     host: session-redis-001.pxr9ze.0001.apn2.cache.amazonaws.com
     port: 6379
+    configuration:
+      secure:
+        true
   session:
     store-type: redis
     redis:
