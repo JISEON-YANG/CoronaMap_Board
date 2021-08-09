@@ -9,7 +9,7 @@ pipeline {
             }
             stage('Build'){
                 steps{
-                    sh './gradlew build -Dspring.profiles.active=prod'
+                    sh './gradlew build -Dspring.profiles.active=dev'
                 }
             }
 
