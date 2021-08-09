@@ -1,10 +1,12 @@
 spring:
   redis:
-    host: localhost
+    host: session-redis.pxr9ze.ng.0001.apn2.cache.amazonaws.com
     port: 6379
   session:
     store-type: redis
-#  datasource:
+    redis:
+      flush-mode: on_save
+  #  datasource:
 #    url: jdbc:h2:mem:testdb
 #    username: sa
 #    password:
