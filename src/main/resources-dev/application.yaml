@@ -1,7 +1,9 @@
 profile: dev
 
 spring:
-
+  redis:
+    host: localhost
+    port: 6379
   datasource:
     url: jdbc:mariadb://appleluck-db-dev.cooikna6ekad.ap-northeast-2.rds.amazonaws.com:3306/appleluck
     username: admin

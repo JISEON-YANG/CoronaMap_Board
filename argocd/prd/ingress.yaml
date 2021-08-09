@@ -27,7 +27,7 @@ spec:
     - host:
       http:
         paths:
-          - path: /map/*
+          - path: /map/
             pathType: Prefix
             backend:
               service:

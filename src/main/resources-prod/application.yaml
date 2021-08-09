@@ -1,7 +1,9 @@
 profile: prod
 
 spring:
-
+  redis:
+    host: session-redis.pxr9ze.ng.0001.apn2.cache.amazonaws.com
+    port: 6379
   datasource:
     url: jdbc:mariadb://acme.appleluck.com:3306/appleluck
     username: admin
