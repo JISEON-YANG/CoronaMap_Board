@@ -1,10 +1,21 @@
 spring:
-
-#  datasource:
-#    url: jdbc:mariadb://acme.appleluck.com:3306/appleluck
-#    username: admin
-#    password: Soldesk!
-#    driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+    host: session-redis.pxr9ze.ng.0001.apn2.cache.amazonaws.com
+    port: 6379
+  session:
+    store-type: redis
+    redis:
+      flush-mode: on_save
+  #  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+  datasource:
+    url: jdbc:mariadb://appleluck-db-dev.cooikna6ekad.ap-northeast-2.rds.amazonaws.com:3306/appleluck
+    username: admin
+    password: Soldesk!
+    driver-class-name: org.mariadb.jdbc.Driver
   h2:
     console:
       enabled: true
@@ -15,10 +26,9 @@ spring:
       hibernate:
         #        show_sql: true
         format_sql: true
-#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   profiles:
     include: oauth
-  session:
-    store-type: jdbc
 logging.level:
   org.hibernate.SQL: debug
+
