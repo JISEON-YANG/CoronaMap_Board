@@ -24,7 +24,7 @@ pipeline {
 //                     sh './gradlew bootRun '
 //                 }
 //             }
-    }
+//     }
      stages {
         stage('Build gradle') {
             steps {
